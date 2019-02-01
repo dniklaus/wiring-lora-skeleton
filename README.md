@@ -55,8 +55,8 @@ Install PlatformIO using the Python Package Manager
 
 ## How to build for Eclipse CDT
   1. Create a directory where your Eclipse Workspace will be stored and where this project shall be cloned into. E.g. `C:\git\pio-prj`
-  2. Clone this repository recursively into the folder you created before, `git clone --recursive git@github.com:dniklaus/wiring-skeleton.git`
-  3. Open a command shell in the just cloned project folder, i.e in `C:\git\pio-prj\wiring-skeleton`
+  2. Clone the repository - [wiring-lora-skeleton](https://github.com/ERNICommunity/wiring-lora-skeleton) - into the folder you created before, `git clone git@github.com:ERNICommunity/wiring-lora-skeleton.git`
+  3. Open a command shell in the just cloned project folder , i.e in `C:\git\pio-prj\wiring-lora-skeleton`
   4. Run the command `pio init --ide eclipse`, this prepares the project to be edited using Eclipse CDT
   5. Run the command `pio run`, this starts the project build 
 
@@ -64,7 +64,7 @@ Note: Print a list of all available boards with the command: `pio boards`
 
 ## Open project in Eclipse CDT
   1. Open Eclipse CDT, choose the folder you created before as workspace, i.e `C:\git\pio-prj`
-  2. Import the project with File->Import->General->Existing Projects into Workspace, choose the `wiring-skeleton` (i.e `C:\git\pio-prj\wiring-skeleton`)
+  2. Import the project with File->Import->General->Existing Projects into Workspace, choose the `wiring-lora-skeleton` (i.e `C:\git\pio-prj\wiring-lora-skeleton`)
 
 ## Connect Terminal Emulation
 In order to test and run the CLI commands, a terminal emulation program shall be used. The one giving you the best experience will be the [HTerm](http://www.der-hammer.info/terminal/). 
@@ -75,9 +75,18 @@ Load the _hterm-com10.cfg_ file to configure HTerm properly. Alter the COM10 acc
 ### Debug CLI Commands
 #### Command Tree
      dbg                      Debug CLI root node
+       assets                 Assets
+         dvcser               Device Serial Number
+           get                Get Device Serial Number
+           set                Set Device Serial Number
+         lorakeys             LoRa Keys
+           get                Get LoRa Keys
+       lora                   LoRaWan Driver
+         cfg                  Configure the LoRaWan Driver
+         sch [get|set <0|1>]  Get / set the LoRaWan Driver's single channel mode config status
        tr                     Debug Trace Port config access
-         heap                 Particular Trace Port (heap: see below in chapter Trace Port)
-           out                Trace Output config access for the current trace port
+         heap                 Particular Trace Port (heap: see below)
+           out                Trace Output cfg access for current port
              get              Show the assigned Trace Output
              set <outName>    Set a particular Trace Output name
              list             Show all available Trace Output names (and the currently selected)
@@ -95,6 +104,8 @@ Load the _hterm-com10.cfg_ file to configure HTerm properly. Alter the COM10 acc
 |Trace Port|default level|functionality|
 |----------|-------------|:------------|
 |heap|info|if set to debug level: automatically print free heap memory [bytes], every 10 seconds|
+|assets|info||
+|lora|debug||
 
 ## Library Usage
 This chapter lists all the libraries this project is using.
@@ -104,9 +115,12 @@ This chapter lists all the libraries this project is using.
 |ID|Name|URL|Description|
 |:---|:------------|:----------------|:-----------------------|
 | 173|SerialCommand|https://github.com/kroimon/Arduino-SerialCommand|A Wiring/Arduino library to tokenize and parse commands received over a serial port.|
-|1699|wiring-timer |https://github.com/dniklaus/wiring-timer|Universal recurring or non-recurring Timer.|
+|1699|wiring-timer |https://github.com/dniklaus/wiring-timer|Universal recurring or non-recurring Timer. <br />Configurable timer to schedule events without having to use Arduino delay() function; helps to improve your application's architecture by encapsulating the timers into your components and thus make them active.|
 |1716|debug-cli|https://github.com/ERNICommunity/debug-cli|Debug CLI for Embedded Applications - Command Line  Interface for debugging and testing based on object oriented tree structure.|
 |1717|dbg-trace|https://github.com/ERNICommunity/dbg-trace|Debug Trace component for Embedded Applications - Debug and Trace Log message system based on trace ports with adjustable levels.|
+|31|Adafruit Unified Sensor|https://github.com/adafruit/Adafruit_Sensor|Adafruit Unified Sensor Driver|
+|19|DHT sensor library|https://github.com/adafruit/DHT-sensor-library|Adafruit DHT Humidity & Temperature Sensor Library|
+|431|Nanopb|https://github.com/nanopb/nanopb|Nanopb - Protocol Buffers for Embedded Systems (Google)|
 
 
 
@@ -114,6 +128,8 @@ This chapter lists all the libraries this project is using.
 
 |Name|URL|Description|
 |:------|:---------------------|:-------------------------------|
-|RamUtils|https://github.com/dniklaus/arduino-utils-mem|Arduino Memory Utilities|
-|App-Debug  |https://github.com/dniklaus/wiring-app-debug.git|Wiring application debug setup component                                                                                         |
+|RamUtils|https://github.com/dniklaus/arduino-utils-mem|Arduino Memory Utilities - helps to determine the free Ram that is currently available|
+|App-Debug  |https://github.com/dniklaus/wiring-app-debug.git|Wiring application debug setup component - boilerplate code setting up all the debug environment such as CLI and Tracing and free RAM info printer                                                                                         |
+|Battery |https://github.com/dniklaus/Battery|LiPo Battery Voltage Surveillance component |
+|Arduino-LMIC library |https://github.com/mymichu/Arduino_LMIC#EuropeConfiguration|IBM LMIC (LoraMAC-in-C) library for Arduino environment, allowing using the SX1272, SX1276 transceivers and compatible modules (such as some HopeRF RFM9x modules and the Murata LoRa modules). |
 
