@@ -28,18 +28,19 @@
 #include <DetectorFakePersDataMemory.h>
 #include <Battery.h>
 #include <MyBatteryAdapter.h>
-#include <LoraWanAbp.hpp>
-#include <LoRaWanDriver.hpp>
+#include <LoraWanAbp.h>
+#include <LoRaWanDriver.h>
 #include <MyLoRaWanConfigAdapter.h>
-#include <LoraWanPriorityQueue.hpp>
-#include <pb_encode.h>
-#include <pb_decode.h>
-#include <SerialCommand.h>
 
-/* This is the buffer where we will store our message. */
-bool setMessageOnce = true;
-LoRaWanDriver* m_LoraWanInterface;
-LoraWanPriorityQueue* m_LoraWanPriorityQueue;
+LoRaWanDriver* m_LoraWanInterface = 0;
+// Pin mapping
+//#if defined(ARDUINO_SAMD_FEATHER_M0)
+const lmic_pinmap lmic_pins = LmicPinMap_AdafruitFeatherM0();
+//#elif defined (__arm__) && defined (__SAM3X8E__)              // Arduino Due => Dragino Shield
+//const lmic_pinmap lmic_pins = LmicPinMap_DraginoShield();
+//#elif defined (__avr__)                                       // Arduino Uno or Mega 2560 => Dragino Shield
+//const lmic_pinmap lmic_pins = LmicPinMap_DraginoShield();
+//#endif
 
 #ifndef BUILTIN_LED
 #define BUILTIN_LED 13
@@ -53,6 +54,8 @@ void setup()
 {
   pinMode(BUILTIN_LED, OUTPUT);
   digitalWrite(BUILTIN_LED, 0);
+
+  delay(5000);
 
   setupProdDebugEnv();
 
@@ -68,25 +71,21 @@ void setup()
                                      3.4, // BATT_STOP_THRSHD [V]
                                      3.2, // BATT_SHUT_THRSHD [V]
                                      0.1  // BATT_HYST        [V]
-                                    };
+                                   };
   battery = new Battery(new MyBatteryAdapter(), battCfg);
-
-  //-----------------------------------------------------------------------------
-  // Sensors
-  //-----------------------------------------------------------------------------
-  pmProcess = new PM_Process(&Serial1, new MyPM_ProcessAdapter());
-  pmProcess->init(9600);
-  dhtProcess = new DHT_Process(new MyDHT_ProcessAdapter());
 
   //-----------------------------------------------------------------------------
   // LoRaWan
   //-----------------------------------------------------------------------------
   m_LoraWanInterface = new LoraWanAbp(new MyLoRaWanConfigAdapter(assets));
-  m_LoraWanPriorityQueue = new LoraWanPriorityQueue(m_LoraWanInterface);
-  // m_MeasurementFacade = new MeasurementFacade(m_LoraWanPriorityQueue);
-  // m_SystemStatusFacade = new SystemStatusFacade(m_LoraWanPriorityQueue);
-  m_LoraWanPriorityQueue->setUpdateCycleHighPriorityPerdioc(2);
-  m_LoraWanPriorityQueue->start();
+
+  // #TODO nid: remove this again (this is just used when working with single channel gateway)
+//  m_LoraWanInterface->setIsSingleChannel(true);
+
+  const char txString[] = "0123456789";
+  unsigned char txBuffer[strlen(txString)+1];
+  memcpy(txBuffer, txString, strlen(txString));
+  m_LoraWanInterface->setPeriodicMessageData(txBuffer, strlen(txString));
 }
 
 void loop()
@@ -97,5 +96,4 @@ void loop()
   }
   yield();                  // process Timers
   m_LoraWanInterface->loopOnce();
-  m_LoraWanPriorityQueue->update();
 }
