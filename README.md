@@ -17,11 +17,11 @@ This project integrates the following **components**:
 * [***Dbg-Trace***](https://github.com/ERNICommunity/dbg-trace): debug trace log environment with configurable log levels
 * [***Ramutils***](https://github.com/dniklaus/arduino-utils-mem): helps to determine the free Ram that is currently available
 * [***App-Dbg***](https://github.com/dniklaus/wiring-app-debug): boilerplate code setting up all the debug environment such as CLI and Tracing and free RAM info printer
-* [***Battery***](https://github.com/dniklaus/Battery):
-* [***LMIC***](https://github.com/mymichu/Arduino_LMIC.git#EuropeConfiguration):
-* [***lorawan-lmic-wrapper***](https://github.com/ERNICommunity/lorawan-lmic-wrapper.git):
-* [***lorawan-assets***](https://github.com/ERNICommunity/lorawan-assets.git):
-* [***arduino-toggle-button***](https://github.com/dniklaus/arduino-toggle-button.git):
+* [***Battery***](https://github.com/dniklaus/Battery): LiPo Battery Voltage Surveillance component
+* [***LMIC***](https://github.com/mymichu/Arduino_LMIC.git#EuropeConfiguration): IBM LMIC (LoraMAC-in-C) library, slightly modified to run in the Arduino environment
+* [***lorawan-lmic-wrapper***](https://github.com/ERNICommunity/lorawan-lmic-wrapper.git): LoRaWan: LMIC library wrapper (Arduino Framework based)
+* [***lorawan-assets***](https://github.com/ERNICommunity/lorawan-assets.git): LoRaWan Assets (storage for App & Network Session Keys, Device Id)
+* [***arduino-toggle-button***](https://github.com/dniklaus/arduino-toggle-button.git): A virtual binary status implementation
 
 This skeleton application demonstrates how to integrate libraries provided by the PlatformIO ecosystem and also how to use your own libraries and can help you to build up your own Arduino Framework based applications with focus on LoRaWan. 
 
