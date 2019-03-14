@@ -12,11 +12,11 @@ This skeleton application can help you to build up your own Arduino Framework ba
 
 This project integrates the following **components**:
 
-* ***[Timer](https://github.com/dniklaus/wiring-timer)***: configurable recurring or non-recurring timer to schedule events without having to use Arduino delay() function; helps to improve your application's architecture by encapsulating the timers into your components and thus make them active
-* ***[Debug-Cli](https://github.com/ERNICommunity/debug-cli)***: interactive console environment with command tree that can be built up decentralized (from any different location in your application code and within any component)
-* ***[Dbg-Trace](https://github.com/ERNICommunity/dbg-trace)***: debug trace log environment with configurable log levels
-* ***[Ramutils](https://github.com/dniklaus/arduino-utils-mem)***: helps to determine the free Ram that is currently available
-* ***[App-Dbg](https://github.com/dniklaus/wiring-app-debug)***: boilerplate code setting up all the debug environment such as CLI and Tracing and free RAM info printer
+* [***Timer***](https://github.com/dniklaus/wiring-timer): configurable recurring or non-recurring timer to schedule events without having to use Arduino delay() function; helps to improve your application's architecture by encapsulating the timers into your components and thus make them active
+* [***Debug-Cli***](https://github.com/ERNICommunity/debug-cli): interactive console environment with command tree that can be built up decentralized (from any different location in your application code and within any component)
+* [***Dbg-Trace***](https://github.com/ERNICommunity/dbg-trace): debug trace log environment with configurable log levels
+* [***Ramutils***](https://github.com/dniklaus/arduino-utils-mem): helps to determine the free Ram that is currently available
+* [***App-Dbg***](https://github.com/dniklaus/wiring-app-debug): boilerplate code setting up all the debug environment such as CLI and Tracing and free RAM info printer
 * [***Battery***](https://github.com/dniklaus/Battery):
 * [***LMIC***](https://github.com/mymichu/Arduino_LMIC.git#EuropeConfiguration):
 * [***lorawan-lmic-wrapper***](https://github.com/ERNICommunity/lorawan-lmic-wrapper.git):
