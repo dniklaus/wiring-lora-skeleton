@@ -92,8 +92,8 @@ void loop()
 {
   if (0 != sCmd)
   {
-    sCmd->readSerial();     // process serial commands
+    sCmd->readSerial();             // process serial commands (Debug CLI)
   }
-  yield();                  // process Timers
-  m_LoraWanInterface->loopOnce();
+  scheduleTimers();                 // process Timers
+  m_LoraWanInterface->loopOnce();   // process LoRaWan driver
 }
