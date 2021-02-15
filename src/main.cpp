@@ -9,7 +9,7 @@
 
 // PlatformIO libraries
 #include <SerialCommand.h>  // pio lib install 173, lib details see https://github.com/kroimon/Arduino-SerialCommand
-#include <Timer.h>          // pio lib install 1699, lib details see https://github.com/dniklaus/wiring-timer
+#include <SpinTimer.h>      // pio lib install 1699, lib details see https://github.com/dniklaus/spin-timer
 
 // private libraries
 #include <DbgCliNode.h>
@@ -90,6 +90,7 @@ void setup()
 
 void loop()
 {
+  // file deepcode ignore CppSameEvalBinaryExpressionfalse: sCmd gets instantiated by setupProdDebugEnv()
   if (0 != sCmd)
   {
     sCmd->readSerial();             // process serial commands (Debug CLI)
