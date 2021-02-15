@@ -8,7 +8,6 @@
 #include "ProductDebug.h"
 
 #include <Arduino.h>
-#include <Timer.h>
 #include <SerialCommand.h>
 #include <DbgCliNode.h>
 #include <DbgCliTopic.h>
