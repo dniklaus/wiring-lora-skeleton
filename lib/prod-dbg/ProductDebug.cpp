@@ -5,35 +5,16 @@
  *      Author: nid
  */
 
-#include "ProductDebug.h"
-
 #include <Arduino.h>
 #include <SerialCommand.h>
-#include <DbgCliNode.h>
-#include <DbgCliTopic.h>
-#include <DbgCliCommand.h>
-#include <DbgTraceContext.h>
-#include <DbgTracePort.h>
-#include <DbgTraceLevel.h>
-#include <DbgPrintConsole.h>
-#include <DbgTraceOut.h>
 #include <AppDebug.h>
+#include "ProductDebug.h"
 
 
-#ifdef ESP8266
-extern "C"
+void ProductDebug::setupProdDebugEnv(SerialCommand* sCmd)
 {
-  #include "user_interface.h"
-}
-#else
-#include <RamUtils.h>
-#endif
-
-//-----------------------------------------------------------------------------
-
-void setupProdDebugEnv()
-{
-  setupDebugEnv();
+  AppDebug appDebug(sCmd);
+  appDebug.setupDebugEnv();
 
   Serial.println();
   Serial.println("---------------------------------------------");
